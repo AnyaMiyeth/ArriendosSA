@@ -17,5 +17,9 @@ namespace NgNetCore.Models
         public string Departamento { get; set; }
         [Required]
         public string Ciudad { get; set; }
+        
+         [Required]
+        public decimal Valor { get; set; }
+
     }
 }

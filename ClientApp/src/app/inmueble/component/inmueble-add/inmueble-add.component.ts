@@ -29,7 +29,8 @@ export class InmuebleAddComponent implements OnInit {
       direccion: [this.inmueble.direccion, Validators.required],
       descripcion: [this.inmueble.descripcion, Validators.required],
       departamento: [this.inmueble.departamento, Validators.required],
-      ciudad: [this.inmueble.ciudad, Validators.required]
+      ciudad: [this.inmueble.ciudad, Validators.required],
+      valor: [this.inmueble.valor, Validators.required]
     });
   }
 

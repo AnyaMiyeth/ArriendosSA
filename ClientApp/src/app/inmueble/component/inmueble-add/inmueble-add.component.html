@@ -45,11 +45,21 @@
   <div class="form-group">
     <div class="col-md-4 mb-3">
       <label>Ciudad</label>
-      <input type="text" formControlName="ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }" placeholder="Costo">
+      <input type="text" formControlName="ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }" placeholder="Ciudad">
       <div *ngIf="submitted && f.ciudad.errors" class="invalid-feedback">
         <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
       </div>
     </div>
+  </div>
+
+    <div class="form-group">
+      <div class="col-md-4 mb-3">
+        <label>Valor del Arrieno Mensual</label>
+        <input type="number" formControlName="valor" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.valor.errors }" placeholder="valor">
+        <div *ngIf="submitted && f.valor.errors" class="invalid-feedback">
+          <div *ngIf="f.valor.errors.required">Digite el Valor del Arriendo en el Mes</div>
+        </div>
+      </div>
 
     <div class="form-group">
       <div class="text-center">
@@ -59,4 +69,6 @@
     </div>
   </div>
   
+
+
 </form>

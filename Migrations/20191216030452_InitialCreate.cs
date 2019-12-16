@@ -29,25 +29,12 @@ namespace NgNetCore.Migrations
                     Direccion = table.Column<string>(nullable: false),
                     Descripcion = table.Column<string>(nullable: false),
                     Departamento = table.Column<string>(nullable: false),
-                    Ciudad = table.Column<string>(nullable: false)
+                    Ciudad = table.Column<string>(nullable: false),
+                    Valor = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Inmueble", x => x.NumeroMatricula);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rutas",
-                columns: table => new
-                {
-                    Codigo = table.Column<string>(nullable: false),
-                    CiudadOrigen = table.Column<string>(nullable: false),
-                    CiudadDestino = table.Column<string>(nullable: false),
-                    Costo = table.Column<decimal>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rutas", x => x.Codigo);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,9 +101,6 @@ namespace NgNetCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Inmueble");
-
-            migrationBuilder.DropTable(
-                name: "Rutas");
 
             migrationBuilder.DropTable(
                 name: "Creditos");

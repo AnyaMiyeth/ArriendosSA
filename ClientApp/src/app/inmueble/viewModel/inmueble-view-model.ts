@@ -4,4 +4,5 @@ export class InmuebleViewModel {
   descripcion: string;
   departamento: string;
   ciudad: string;
+  valor: number;
 }

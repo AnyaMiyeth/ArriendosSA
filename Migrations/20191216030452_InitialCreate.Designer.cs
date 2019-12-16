@@ -10,7 +10,7 @@ using NgNetCore.Data;
 namespace NgNetCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191214164816_InitialCreate")]
+    [Migration("20191216030452_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,30 +119,12 @@ namespace NgNetCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("NumeroMatricula");
 
                     b.ToTable("Inmueble");
-                });
-
-            modelBuilder.Entity("NgNetCore.Models.Ruta", b =>
-                {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CiudadDestino")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CiudadOrigen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Costo")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Codigo");
-
-                    b.ToTable("Rutas");
                 });
 
             modelBuilder.Entity("NgNetCore.Models.Credito", b =>

@@ -117,30 +117,12 @@ namespace NgNetCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("NumeroMatricula");
 
                     b.ToTable("Inmueble");
-                });
-
-            modelBuilder.Entity("NgNetCore.Models.Ruta", b =>
-                {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CiudadDestino")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CiudadOrigen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Costo")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Codigo");
-
-                    b.ToTable("Rutas");
                 });
 
             modelBuilder.Entity("NgNetCore.Models.Credito", b =>
