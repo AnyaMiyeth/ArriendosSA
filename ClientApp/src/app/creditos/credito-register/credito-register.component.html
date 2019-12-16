@@ -1,0 +1,66 @@
+<div class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2>Registro de Créditos</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-row">
+            <div class="col-md-4">
+              <label>Identificación</label>
+              <input type="number" formControlName="clienteId" class="form-control" (blur)="buscarCliente()" (dblclick)="openModalCliente()" [ngClass]="{ 'is-invalid':  f.clienteId.errors }" />
+              <div *ngIf="submitted && f.clienteId.errors" class="invalid-feedback">
+                <div *ngIf="f.clienteId.errors.required">La Identidad del Cliente es requerida</div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <label> </label>
+              <button class="btn btn-primary" type="button" (click)="openModalCliente()">...</button>
+            </div>
+            <div class="col-md-7">
+              <label>Nombre Cliente</label>
+              <input type="text" readonly formControlName="clienteNombre" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Fecha </label>
+            <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }" />
+            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+              <div *ngIf="f.fecha.errors.required">La Fecha es requerida</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Número Cuotas</label>
+            <input type="number" formControlName="numeroCuotas" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroCuotas.errors }" />
+            <div *ngIf="submitted && f.numeroCuotas.errors" class="invalid-feedback">
+              <div *ngIf="f.numeroCuotas.errors.required">NumeroCuotas es requerido</div>
+              <div *ngIf="f.numeroCuotas.errors.min">Número de Cuotas es mínimo de 2 cuotas</div>
+              <div *ngIf="f.numeroCuotas.errors.max">Número de Cuotas es máximo de 12 cuotas</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Valor Crédito</label>
+            <input type="number" formControlName="valorCredito" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.valorCredito.errors }" />
+            <div *ngIf="submitted && f.valorCredito.errors" class="invalid-feedback">
+              <div *ngIf="f.valorCredito.errors.required">Valor Crédito es requerido</div>
+              <div *ngIf="f.valorCredito.errors.min">Valor Crédito es mínimo de $100.000 pesos m/c</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Observación</label>
+            <textarea formControlName="observacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.observacion.errors }">
+            </textarea>
+            <div *ngIf="submitted && f.observacion.errors" class="invalid-feedback">
+              <div *ngIf="f.observacion.errors.required">Observación es requerido</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary mr-1" >Register</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

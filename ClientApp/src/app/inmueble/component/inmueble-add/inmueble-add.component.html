@@ -1,0 +1,62 @@
+<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <div class="col-md-4 mb-3">
+      <label>Numero de Matricula</label>
+      <input type="text" formControlName="numeroMatricula" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroMatricula.errors }" placeholder="Número de Matricula">
+      <div *ngIf="submitted && f.numeroMatricula.errors" class="invalid-feedback">
+        <div *ngIf="f.numeroMatricula.errors.required">El número de matricula es requerido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4 mb-3">
+      <label>Descripcion</label>
+      <input type="text" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }" placeholder="Descripcion">
+      <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+        <div *ngIf="f.descripcion.errors.required">Digite cantidad de cuartos, baños, si tiene patio o cualquier información adicionla de su vivienda</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4 mb-3">
+      <label>Direcion</label>
+      <input type="text" formControlName="direccion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }" placeholder="Direccion">
+      <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
+        <div *ngIf="f.direccion.errors.required">La dirección es requerida</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-4 mb-3">
+      <label>Departamento</label>
+      <input type="text" formControlName="departamento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.departamento.errors }" placeholder="Departamento">
+      <div *ngIf="submitted && f.departamento.errors" class="invalid-feedback">
+        <div *ngIf="f.departamento.errors.required">El departamento es requerido</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-4 mb-3">
+      <label>Ciudad</label>
+      <input type="text" formControlName="ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }" placeholder="Costo">
+      <div *ngIf="submitted && f.ciudad.errors" class="invalid-feedback">
+        <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Register</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+</form>

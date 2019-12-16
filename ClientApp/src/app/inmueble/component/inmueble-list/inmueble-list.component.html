@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">numeroMatricula</th>
+      <th scope="col">Direccion </th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let inmueble of inmuebles ; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ inmueble.numeroMatricula }} </td>
+      <td>{{ inmueble.direccion }}</td>
+      <td>{{ inmueble.descripcion }}</td>
+      <td>{{ inmueble.departamento }}</td>
+      <td>{{ inmueble.ciudad}}</td>
+    </tr>
+  </tbody>
+</table>
