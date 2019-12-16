@@ -11,18 +11,18 @@ namespace NgNetCore.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Identidad = table.Column<string>(nullable: false),
+                    Identificacion = table.Column<string>(nullable: false),
                     NombreCompleto = table.Column<string>(nullable: true),
                     Telefono = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.Identidad);
+                    table.PrimaryKey("PK_Clientes", x => x.Identificacion);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Inmueble",
+                name: "Inmuebles",
                 columns: table => new
                 {
                     NumeroMatricula = table.Column<string>(nullable: false),
@@ -34,7 +34,7 @@ namespace NgNetCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inmueble", x => x.NumeroMatricula);
+                    table.PrimaryKey("PK_Inmuebles", x => x.NumeroMatricula);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,8 +56,36 @@ namespace NgNetCore.Migrations
                         name: "FK_Creditos_Clientes_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
-                        principalColumn: "Identidad",
+                        principalColumn: "Identificacion",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Arriendos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClienteIdentificacion = table.Column<string>(nullable: false),
+                    InmuebleNumeroMatricula = table.Column<string>(nullable: false),
+                    Mes = table.Column<int>(nullable: false),
+                    ValorContrato = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Arriendos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Arriendos_Clientes_ClienteIdentificacion",
+                        column: x => x.ClienteIdentificacion,
+                        principalTable: "Clientes",
+                        principalColumn: "Identificacion",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Arriendos_Inmuebles_InmuebleNumeroMatricula",
+                        column: x => x.InmuebleNumeroMatricula,
+                        principalTable: "Inmuebles",
+                        principalColumn: "NumeroMatricula",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,6 +112,16 @@ namespace NgNetCore.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Arriendos_ClienteIdentificacion",
+                table: "Arriendos",
+                column: "ClienteIdentificacion");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Arriendos_InmuebleNumeroMatricula",
+                table: "Arriendos",
+                column: "InmuebleNumeroMatricula");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Creditos_ClienteId",
                 table: "Creditos",
                 column: "ClienteId");
@@ -97,10 +135,13 @@ namespace NgNetCore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Arriendos");
+
+            migrationBuilder.DropTable(
                 name: "Cuota");
 
             migrationBuilder.DropTable(
-                name: "Inmueble");
+                name: "Inmuebles");
 
             migrationBuilder.DropTable(
                 name: "Creditos");

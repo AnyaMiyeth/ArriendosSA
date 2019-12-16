@@ -25,14 +25,14 @@ namespace NgNetCore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inmueble>>> GetInmueble()
         {
-            return await _context.Inmueble.ToListAsync();
+            return await _context.Inmuebles.ToListAsync();
         }
 
         // GET: api/Inmuebles/5
         [HttpGet("{NumeroMatricula}")]
         public async Task<ActionResult<Inmueble>> GetInmueble(string NumeroMatricula)
         {
-            var inmueble = await _context.Inmueble.FindAsync(NumeroMatricula);
+            var inmueble = await _context.Inmuebles.FindAsync(NumeroMatricula);
 
             if (inmueble == null)
             {
@@ -80,7 +80,7 @@ namespace NgNetCore.Controllers
         [HttpPost]
         public async Task<ActionResult<Inmueble>> PostInmueble(Inmueble inmueble)
         {
-            _context.Inmueble.Add(inmueble);
+            _context.Inmuebles.Add(inmueble);
             try
             {
                 await _context.SaveChangesAsync();
@@ -111,13 +111,13 @@ namespace NgNetCore.Controllers
         [HttpDelete("{NumeroMatricula}")]
         public async Task<ActionResult<Inmueble>> DeleteInmueble(string NumeroMatricula)
         {
-            var inmueble = await _context.Inmueble.FindAsync(NumeroMatricula);
+            var inmueble = await _context.Inmuebles.FindAsync(NumeroMatricula);
             if (inmueble == null)
             {
                 return NotFound();
             }
 
-            _context.Inmueble.Remove(inmueble);
+            _context.Inmuebles.Remove(inmueble);
             await _context.SaveChangesAsync();
 
             return inmueble;
@@ -125,7 +125,7 @@ namespace NgNetCore.Controllers
 
         private bool InmuebleExists(string NumeroMatricula)
         {
-            return _context.Inmueble.Any(e => e.NumeroMatricula == NumeroMatricula);
+            return _context.Inmuebles.Any(e => e.NumeroMatricula == NumeroMatricula);
         }
     }
 }

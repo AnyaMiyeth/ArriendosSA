@@ -10,7 +10,7 @@ using NgNetCore.Data;
 namespace NgNetCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191216030452_InitialCreate")]
+    [Migration("20191216054441_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,39 @@ namespace NgNetCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("NgNetCore.Models.Arriendo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClienteIdentificacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("InmuebleNumeroMatricula")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Mes")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ValorContrato")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteIdentificacion");
+
+                    b.HasIndex("InmuebleNumeroMatricula");
+
+                    b.ToTable("Arriendos");
+                });
+
             modelBuilder.Entity("NgNetCore.Models.Cliente", b =>
                 {
-                    b.Property<string>("Identidad")
+                    b.Property<string>("Identificacion")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -35,7 +65,7 @@ namespace NgNetCore.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Identidad");
+                    b.HasKey("Identificacion");
 
                     b.ToTable("Clientes");
                 });
@@ -124,7 +154,22 @@ namespace NgNetCore.Migrations
 
                     b.HasKey("NumeroMatricula");
 
-                    b.ToTable("Inmueble");
+                    b.ToTable("Inmuebles");
+                });
+
+            modelBuilder.Entity("NgNetCore.Models.Arriendo", b =>
+                {
+                    b.HasOne("NgNetCore.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteIdentificacion")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NgNetCore.Models.Inmueble", "Inmueble")
+                        .WithMany()
+                        .HasForeignKey("InmuebleNumeroMatricula")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NgNetCore.Models.Credito", b =>
